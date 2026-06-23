@@ -1,0 +1,101 @@
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environments
+venv/
+env/
+ENV/
+.venv/
+
+# Python Packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# ==========================================================
+# IDEs
+# ==========================================================
+
+# VS Code
+.vscode/
+
+# PyCharm
+.idea/
+
+# Visual Studio
+.vs/
+
+# ==========================================================
+# Environment Variables
+# ==========================================================
+.env
+.env.*
+
+# ==========================================================
+# Logs
+# ==========================================================
+*.log
+
+# ==========================================================
+# OS Files
+# ==========================================================
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# macOS
+.DS_Store
+
+# ==========================================================
+# Jupyter
+# ==========================================================
+.ipynb_checkpoints/
+
+# Generated PMT results
+output/
+outputs/
+results/
+
+# Generated spreadsheets
+*_output.xlsx
+*_results.xlsx
+
+# Temporary Excel files
+~$*.xlsx
+
+# ==========================================================
+# Temporary Files
+# ==========================================================
+*.tmp
+*.temp
+*.bak
+
+# ==========================================================
+# Testing / Coverage
+# ==========================================================
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ==========================================================
+# MyPy / Ruff / Type Checking
+# ==========================================================
+.mypy_cache/
+.ruff_cache/
+
+# ==========================================================
+# Project Specific
+# ==========================================================
+
+# Local input files containing household data
+data/
+input/
+uploads/
+
+# Keep directory structure but ignore contents
+!data/.gitkeep
+!input/.gitkeep
+!output/.gitkeep
