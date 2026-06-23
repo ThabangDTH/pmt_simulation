@@ -1,10 +1,27 @@
+"""
+constants.py
+
+This module contains all configuration constants used in the
+Rural Household PMT (Proxy Means Test) system.
+
+These include:
+- Model coefficients
+- Categorical mappings
+- Excel formatting configuration
+- Business rules thresholds
+"""
+
 from openpyxl.styles import Font, PatternFill, Border, Side
 
 # ---------------------------------------------------------------------------
-# Application Constants
+# Missing value sentinel
 # ---------------------------------------------------------------------------
 
 MISSING_VALUE = -1
+
+# ---------------------------------------------------------------------------
+# Excel sheet names
+# ---------------------------------------------------------------------------
 
 INPUT_SHEET_HOUSEHOLDS = "Households"
 INPUT_SHEET_MEMBERS = "Members"
@@ -12,7 +29,7 @@ OUTPUT_SHEET_RESULTS = "PMT_Results"
 OUTPUT_SHEET_SUMMARY = "Summary"
 
 # ---------------------------------------------------------------------------
-# PMT coefficients
+# PMT Model parameters
 # ---------------------------------------------------------------------------
 
 INTERCEPT = 5.318
@@ -45,30 +62,22 @@ POVERTY_SCALE = 1000 / 3.792
 POVERTY_CUTOFF = 361
 
 # ---------------------------------------------------------------------------
-# Fuel Codes
+# Codes
 # ---------------------------------------------------------------------------
 
 FUEL_GAS = 2
 FUEL_PARAFFIN = 3
 
-# ---------------------------------------------------------------------------
-# Activity Codes
-# ---------------------------------------------------------------------------
-
 PAID_EMPLOYEE_CODES = (1, 2)
 SELF_EMPLOYEE_CODES = (4, 5)
 STUDENT_CODE = 7
-
-# ---------------------------------------------------------------------------
-# Living Elsewhere Codes
-# ---------------------------------------------------------------------------
 
 LIVING_IN_HOUSE = 1
 LIVING_ELSEWHERE = (2, 3, 4, 5)
 LIVING_ABROAD = (3, 4)
 
 # ---------------------------------------------------------------------------
-# Excel Formatting
+# Excel styling
 # ---------------------------------------------------------------------------
 
 HEADER_FILL = PatternFill("solid", start_color="1F4E79")
@@ -90,44 +99,14 @@ BORDER = Border(
 COLUMN_GROUPS = {
     "Identification": ["Household_Id"],
     "Household Size": ["HH_Size", "In_House_Count", "Student_Count"],
-    "Education & Work": [
-        "Highest_LOE",
-        "Member_Abroad",
-        "Paid_Employee",
-        "Self_Employee",
-    ],
-    "Assets": [
-        "Heating_Fuel_Code",
-        "var_gas",
-        "var_paraffin",
-        "var_stove",
-        "var_radio",
-        "var_sheep",
-        "var_cattle",
-        "var_horses",
-        "var_poultry",
-    ],
-    "Size Dummies": [
-        "var_size2",
-        "var_size3",
-        "var_size4",
-        "var_size5",
-        "var_size6",
-        "var_size7",
-    ],
-    "Education Dummies": [
-        "var_eduprimary",
-        "var_edusecondary",
-        "var_eduoversecondary",
-    ],
-    "PMT Output": [
-        "PMT_Score",
-        "Poverty_Level",
-        "Parameter_Status",
-        "Missing",
-        "Missing_Reason",
-        "Used_Values",
-    ],
+    "Education & Work": ["Highest_LOE", "Member_Abroad", "Paid_Employee", "Self_Employee"],
+    "Assets": ["Heating_Fuel_Code", "var_gas", "var_paraffin", "var_stove",
+                "var_radio", "var_sheep", "var_cattle", "var_horses", "var_poultry"],
+    "Size Dummies": ["var_size2", "var_size3", "var_size4", "var_size5",
+                     "var_size6", "var_size7"],
+    "Education Dummies": ["var_eduprimary", "var_edusecondary", "var_eduoversecondary"],
+    "PMT Output": ["PMT_Score", "Poverty_Level", "Parameter_Status",
+                   "Missing", "Missing_Reason", "Used_Values"],
 }
 
 GROUP_COLORS = {
