@@ -22,11 +22,32 @@ MISSING_VALUE = -1
 # ---------------------------------------------------------------------------
 # Excel sheet names
 # ---------------------------------------------------------------------------
-
-INPUT_SHEET_HOUSEHOLDS = "Households"
-INPUT_SHEET_MEMBERS = "Members"
+INPUT_SHEET_HOUSEHOLDS = "EnumeratedHouseholds"
+INPUT_SHEET_MEMBERS = "EnumeratedHouseholdMembers"
 OUTPUT_SHEET_RESULTS = "PMT_Results"
 OUTPUT_SHEET_SUMMARY = "Summary"
+
+# ---------------------------------------------------------------------------
+# Column names
+# ---------------------------------------------------------------------------
+# EnumeratedHouseholdMembers sheet
+COL_HEATING_FUEL = "Household Information_Heating Fuel"
+COL_HIGHEST_LOE = "Household Roster_Highest LOE"
+COL_MAIN_ACTIVITY = "Household Roster_Main Activity"
+COL_LIVING_ELSEWHERE = "Household Roster_Living Elsewhere"
+COL_WHERE_MEMBER_LIVING = "Household Roster_Where Member Living"
+COL_DATE_OF_BIRTH = "Household Roster_Date of Birth"
+COL_AGE_IN_YEARS = "Household Roster_Age in Years"
+COL_MEMBER_ID = "HouseholdMemberId"
+COL_MEMBER_STATUS = "HouseholdMember_Status"
+
+# EnumeratedHouseholds sheet
+COL_STOVES = "Household Information_# Stoves"
+COL_RADIOS = "Household Information_# Radios"
+COL_SHEEP = "Household Information_# Sheep"
+COL_CATTLE = "Household Information_# Cattle"
+COL_HORSES = "Household Information_# Horses"
+COL_POULTRY = "Household Information_# Poultry"
 
 # ---------------------------------------------------------------------------
 # PMT Model parameters
@@ -77,6 +98,61 @@ LIVING_ELSEWHERE = (2, 3, 4, 5)
 LIVING_ABROAD = (3, 4)
 
 # ---------------------------------------------------------------------------
+# Text label sentinel for missing/not-applicable values
+# ---------------------------------------------------------------------------
+
+NO_VALUE_SENTINEL = "9998 NO VALUE"
+
+# ---------------------------------------------------------------------------
+# Text-to-code label mappings (Excel exports labels; algorithm expects codes)
+# ---------------------------------------------------------------------------
+
+HEATING_FUEL_LABELS = {
+    "Gas": FUEL_GAS,
+    "Paraffin": FUEL_PARAFFIN,
+    "Wood": 1,
+    "Animal dung/Crop residue": 1,
+    "Coal": 1,
+    "Electricity": 1,
+    "Other": 1,
+}
+
+MAIN_ACTIVITY_LABELS = {
+    "Employed with Salary": 1,
+    "Employer": 4,
+    "Other self-employed with paid labour": 4,
+    "Other self-employed without paid labour": 5,
+    "Subsistence Farmer": 5,
+    "Homemaker/Housewife": 6,
+    "Unpaid Family Worker": 6,
+    "Pupil/Student": STUDENT_CODE,
+    "Retired/Pensioner": 8,
+    "Unemployed": 9,
+    "Other": 10,
+}
+
+HIGHEST_LOE_LABELS = {
+    "Pre-primary (Grade R)": 2,
+    "Primary Incomplete": 3,
+    "Certificate/vocational training after primary": 4,
+    "Primary Complete (Grade 7)": 5,
+    "Secondary Incomplete": 6,
+    "Secondary (Grade 9) Completed": 7,
+    "High School Incomplete": 7,
+    "High School (Grade 11) Completed": 8,
+    "Certificate/vocational training after secondary": 9,
+    "Diploma/Certificate/Vocational training after high school": 9,
+    "Graduate/Postgraduate": 10,
+}
+
+WHERE_LIVING_LABELS = {
+    "In Other Parts of Lesotho": 2,
+    "In RSA": 3,
+    "In Other Countries": 4,
+    "Don't Know Where": 5,
+}
+
+# ---------------------------------------------------------------------------
 # Excel styling
 # ---------------------------------------------------------------------------
 
@@ -98,7 +174,7 @@ BORDER = Border(
 
 COLUMN_GROUPS = {
     "Identification": ["Household_Id"],
-    "Household Size": ["HH_Size", "In_House_Count", "Student_Count"],
+    "Household Size": ["HH_Size", "Effective_Size"],
     "Education & Work": ["Highest_LOE", "Member_Abroad", "Paid_Employee", "Self_Employee"],
     "Assets": ["Heating_Fuel_Code", "var_gas", "var_paraffin", "var_stove",
                 "var_radio", "var_sheep", "var_cattle", "var_horses", "var_poultry"],
