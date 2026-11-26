@@ -62,6 +62,7 @@ results/
 # Generated spreadsheets
 *_output.xlsx
 *_results.xlsx
+*.xlsx
 
 # Temporary Excel files
 ~$*.xlsx
